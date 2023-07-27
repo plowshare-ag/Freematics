@@ -37,23 +37,23 @@
 #endif
 
 /**************************************
-* Circular Buffer Configuration
-**************************************/
+ * Circular Buffer Configuration
+ **************************************/
 #ifdef BOARD_HAS_PSRAM
-#define BUFFER_SLOTS 1024 /* max number of buffer */
-#define BUFFER_LENGTH 384 /* bytes per slot */
+#define BUFFER_SLOTS 1024          /* max number of buffer */
+#define BUFFER_LENGTH 384          /* bytes per slot */
 #define SERIALIZE_BUFFER_SIZE 4096 /* bytes */
 #define HAS_LARGE_RAM 1
 #else
-#define BUFFER_SLOTS 32 /* max number of buffer */
-#define BUFFER_LENGTH 256 /* bytes per slot */
+#define BUFFER_SLOTS 32            /* max number of buffer */
+#define BUFFER_LENGTH 256          /* bytes per slot */
 #define SERIALIZE_BUFFER_SIZE 1024 /* bytes */
 #define HAS_LARGE_RAM 0
 #endif
 
 /**************************************
-* Configuration Definitions
-**************************************/
+ * Configuration Definitions
+ **************************************/
 #define STORAGE_NONE 0
 #define STORAGE_SPIFFS 1
 #define STORAGE_SD 2
@@ -71,8 +71,8 @@
 #define PROTOCOL_METHOD_POST 1
 
 /**************************************
-* OBD-II configurations
-**************************************/
+ * OBD-II configurations
+ **************************************/
 #ifndef ENABLE_OBD
 #define ENABLE_OBD 1
 #endif
@@ -81,20 +81,20 @@
 #define MAX_OBD_ERRORS 3
 
 /**************************************
-* Networking configurations
-**************************************/
+ * Networking configurations
+ **************************************/
 #ifndef ENABLE_WIFI
 #define ENABLE_WIFI 0
 // WiFi settings
 #define WIFI_SSID "FREEMATICS"
 #define WIFI_PASSWORD "PASSWORD"
-#endif 
+#endif
 
 #ifndef SERVER_HOST
 // cellular network settings
-#define CELL_APN ""
+#define CELL_APN "hologram"
 // Freematics Hub server settings
-#define SERVER_HOST "hub.freematics.com"
+#define SERVER_HOST "server.traccar.org"
 #define SERVER_PROTOCOL PROTOCOL_UDP
 #endif
 
@@ -108,7 +108,7 @@
 #if !SERVER_PORT
 #undef SERVER_PORT
 #if SERVER_PROTOCOL == PROTOCOL_UDP
-#define SERVER_PORT 8081
+#define SERVER_PORT 5170
 #elif SERVER_PROTOCOL == PROTOCOL_HTTP
 #define SERVER_PORT 80
 #elif SERVER_PROTOCOL == PROTOCOL_HTTPS
@@ -133,49 +133,55 @@
 // expected maximum server sync signal interval
 #define SERVER_SYNC_INTERVAL 120 /* seconds, 0 to disable */
 // data interval settings
-#define STATIONARY_TIME_TABLE {30, 60, 180} /* seconds */
-#define DATA_INTERVAL_TABLE {1000, 2000, 5000} /* ms */
-#define PING_BACK_INTERVAL 900 /* seconds */
+#define STATIONARY_TIME_TABLE \
+    {                         \
+        30, 60, 180           \
+    } /* seconds */
+#define DATA_INTERVAL_TABLE \
+    {                       \
+        1000, 2000, 5000    \
+    }                            /* ms */
+#define PING_BACK_INTERVAL 900   /* seconds */
 #define SIGNAL_CHECK_INTERVAL 10 /* seconds */
 
 /**************************************
-* Data storage configurations
-**************************************/
+ * Data storage configurations
+ **************************************/
 #ifndef STORAGE
 // change the following line to change storage type
 #define STORAGE STORAGE_SD
 #endif
 
 /**************************************
-* MEMS sensors
-**************************************/
+ * MEMS sensors
+ **************************************/
 #ifndef ENABLE_MEMS
 #define ENABLE_MEMS 1
 #endif
 
 /**************************************
-* GPS
-**************************************/
+ * GPS
+ **************************************/
 #ifndef GNSS
 // change the following line to change GNSS setting
 #define GNSS GNSS_INTERNAL
 #endif
-// keeping GNSS power on during standby 
+// keeping GNSS power on during standby
 #define GNSS_ALWAYS_ON 0
 
 /**************************************
-* Standby/wakeup
-**************************************/
+ * Standby/wakeup
+ **************************************/
 // motion threshold for waking up
 #define MOTION_THRESHOLD 0.4f /* moving vehicle motion threshold in G */
-// engine jumpstart voltage for waking up (when MEMS unavailable) 
+// engine jumpstart voltage for waking up (when MEMS unavailable)
 #define JUMPSTART_VOLTAGE 14 /* V */
 // reset device after waking up
 #define RESET_AFTER_WAKEUP 1
 
 /**************************************
-* Additional features
-**************************************/
+ * Additional features
+ **************************************/
 #define CONFIG_MODE_TIMEOUT 0
 
 #define PIN_SENSOR1 34
@@ -190,8 +196,7 @@
 
 // enable(1)/disable(0) BLE SPP server (for Freematics Controller App).
 #ifndef ENABLE_BLE
-#define ENABLE_BLE 0
+#define ENABLE_BLE 1
 #endif
-
 
 #endif // CONFIG_H_INCLUDED
