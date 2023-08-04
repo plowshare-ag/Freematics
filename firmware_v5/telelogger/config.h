@@ -94,7 +94,7 @@
 // cellular network settings
 #define CELL_APN "hologram"
 // Freematics Hub server settings
-#define SERVER_HOST "server.traccar.org"
+#define SERVER_HOST "telemetry-dev.plowshare.dev" // dev traccar server
 #define SERVER_PROTOCOL PROTOCOL_UDP
 #endif
 
